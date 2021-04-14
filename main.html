@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Let's Learn Lines!</title>
+</head>
+
+<script>
+  /**
+   * This function displays the graph based on the information provided by the user
+   */
+  function display_graph() {
+
+    var slope = parseInt(document.getElementById("slope").value);
+    var yIntercept = parseInt(document.getElementById("yIntercept").value);
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+      theme: "light2",
+      width: 500,
+      height: 500,
+      animationEnabled: true,
+      zoomEnabled: true,
+      title:{
+        text: "Your Graph"
+      },
+      axisX: {
+        minimum: 0,
+        maximum: 5,
+        gridThickness: 1,
+        interval: 1,
+        lineColor: "black",
+        labelFontColor: "black"
+      },
+      axisY: {
+        minimum: 0,
+        maximum: 10,
+        interval: 1,
+        labelFontColor: "black"
+      },
+
+      toolTip: {
+        shared: true
+      },
+      data: [{
+        type: "spline",
+        markerSize: 5,
+        axisYType: "primary",
+        dataPoints: [
+          { x: -yIntercept/slope, y: 0  },
+          { x: 0, y: yIntercept },
+          {x: 10, y: (slope * 10) + (yIntercept)}, //x=10
+          {x: (50 - yIntercept) / slope, y: 50}, //y=50
+        ]
+      }]
+    });
+    chart.render();
+
+  }
+</script>
+
+<body>
+
+  <style>
+    body {background-color: aliceblue;}
+    h1   {
+      color: #234492;
+      font-family: verdana, Arial, Helvetica;
+      text-align: center;
+      border: 2px solid powderblue;
+      padding: 30px;
+    }
+    h2 {
+      font-family: verdana, Arial, Helvetica;
+      color: #1d46a5;
+      text-align: center;}
+
+    h3 {
+      font-family: Monaco, Helvetica, Arial;
+      color: #06124a;
+      text-align: center;}
+    p    {
+      color: #1e1eb0;
+      font-family: Arial, verdana, Helvetica;
+      text-align: center;
+    }
+
+    .Equation {
+      text-align:center;
+    }
+
+    .displayButton{
+      text-align:center;
+    }
+
+    .chartContainer {
+      max-height: 500px;
+      max-width: 800px;
+      position: relative;
+    }
+
+
+    #chartContainer {
+      position: center;
+      left: 33%;
+      top: 25%;
+    }
+
+
+  </style>
+
+  <br>
+  <h1>Let's Learn Lines!</h1>
+  <br>
+
+  <h2>Equation of a Straight Line: </h2>
+  <h3>y = mx + b</h3>
+
+  <p>m is the slope of the line, and it tells us how steep a line is.</p>
+  <p>b is where the line cuts the y-axis, called the y-intercept.</p>
+  <br>
+
+  <h2>Try it yourself!</h2>
+  <p>Enter different numbers for the slope and y-intercept to see how the line changes. </p>
+
+
+  <div class="Equation"> y =
+    <input type="text" id="slope" name="slopeTextBox" maxlength="3" size="3" >
+    x +
+    <input type="text" id="yIntercept" name="yInterceptTextBox" maxlength="3" size="3">
+    <br>
+    <br>
+  </div>
+
+  <div class="displayButton">
+  <input type="button" name="clickbtn" value="Display Graph" onclick="display_graph()">
+  </div>
+  <br>
+
+  <div class='chartContainer' id="chartContainer" style="height: 500px; width: 100%;"></div>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+  <h3>About the slope</h3>
+  <p>The line gets STEEPER if you put bigger numbers as the slope and it gets FLATTER when you put
+    smaller numbers in. </p>
+  <p>So if the slope is 10, the line is much steeper than a slope of 2.</p>
+  <p>A line with a negative slope falls as we move from left to right.</p>
+  <br>
+
+  <h3>About the y-intercept</h3>
+  <p>The y-intercept shows where the line cuts the y-axis, so if the y-intercept is larger, the line
+    will cut the y-axis higher on the graph. </p>
+  <p>So, if the y-intercept is 4, it will meet the y-axis  higher than if the y-intercept was
+    1. </p>
+
+</body>
+</html>
